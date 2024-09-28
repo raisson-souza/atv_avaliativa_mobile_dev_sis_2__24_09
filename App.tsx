@@ -1,10 +1,13 @@
 import React from "react"
-import { StyleSheet, Text, View } from "react-native"
 import { createStackNavigator } from "@react-navigation/stack"
 import { NavigationContainer } from "@react-navigation/native"
+import { Home } from "./src/screens/Home"
+import { AddUser } from "./src/screens/AddUser"
+import { EditUser } from "./src/screens/EditUser"
+import { DetailsUser } from "./src/screens/DetailsUser"
+import { Users } from "./src/screens/Users"
 
-
-type StackNavigationRoutes = {
+export type StackNavigationRoutes = {
   Home: undefined
   AddUser: undefined
   EditUser: { id: number }
@@ -14,52 +17,36 @@ type StackNavigationRoutes = {
 
 const Stack = createStackNavigator<StackNavigationRoutes>()
 
-const MockComponent = () => {
-  return <View><Text>Home</Text></View>
-}
-
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Home"
-          component={MockComponent}
+          component={Home}
           options={{ headerShown: false }}
         />
         <Stack.Screen
           name="AddUser"
-          component={MockComponent}
-          options={{ title: "Detalhes do usuário" }}
+          component={AddUser}
+          options={{ title: "Criar usuário" }}
         />
         <Stack.Screen
           name="EditUser"
-          component={MockComponent}
+          component={EditUser}
           options={{ title: "Editar usuário" }}
         />
         <Stack.Screen
           name="DetailsUser"
-          component={MockComponent}
+          component={DetailsUser}
           options={{ title: "Usuário" }}
         />
         <Stack.Screen
           name="Users"
-          component={MockComponent}
+          component={Users}
           options={{ title: "Usuários" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    color: "red",
-  },
-});
