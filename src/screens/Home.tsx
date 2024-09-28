@@ -1,10 +1,13 @@
-import React from "react"
+import { Button, ScrollView, StyleSheet } from "react-native"
 import { RouteProp } from "@react-navigation/native"
-import { StackNavigationRoutes } from "../../App"
-import { Text, Button } from "react-native"
-import { useNavigation } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
+import { StackNavigationRoutes } from "../../App"
+import { useNavigation } from "@react-navigation/native"
+import { UserOutput } from "../types/user"
+import React, { useEffect, useState } from "react"
 import ScreenBase from "../components/ScreenBase"
+import Service from "../services/Service"
+import UserCard from "../components/UserCard"
 
 type HomeScreenRouteProp = RouteProp<StackNavigationRoutes, "Home">
 
@@ -15,13 +18,39 @@ type HomeScreenProps = {
 type HomeNavigationProp = StackNavigationProp<StackNavigationRoutes, "Home">
 
 export const Home: React.FC<HomeScreenProps> = ({ route }) => {
-    const navigation = useNavigation<HomeNavigationProp>() // Aqui tipamos a navegação corretamente
+    const [ users, setUsers ] = useState<UserOutput[]>([])
+    const navigation = useNavigation<HomeNavigationProp>()
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            await Service.ListUsers()
+                .then(result => {
+                    setUsers(result)
+                })
+        }
+        fetchUsers()
+    }, [])
 
     return (
         <ScreenBase>
-            <Text>HOME SCREEN</Text>
+            <ScrollView style={ styles.users }>
+                {
+                    users.map((user, i) => (
+                        <UserCard
+                            user={ user }
+                            key={ i }
+                        />
+                    ))
+                }
+            </ScrollView>
             <Button title="Criar usuário" onPress={() => navigation.navigate("AddUser")}></Button>
-            <Button title="Visualizar usuários" onPress={() => navigation.navigate("Users")}></Button>
         </ScreenBase>
     )
 }
+
+const styles = StyleSheet.create({
+    users: {
+        paddingTop: 50,
+        alignSelf: "stretch",
+    },
+})
