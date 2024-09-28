@@ -9,17 +9,18 @@ type UserCardProps = {
 
 export default function UserCard({ user }: UserCardProps) {
     const navigation = useNavigation<HomeNavigationProp>()
+    const goToUserDetails = () => navigation.navigate("DetailsUser", { id: user.id })
+
     return (
         <View
             style={ styles.container }
-            onTouchEnd={ () => navigation.navigate("DetailsUser", { id: user.id })}
         >
-            <Text>Id: { user.id }</Text>
-            <Text>Nome: { user.name }</Text>
-            <Text>Email: { user.email }</Text>
-            <Text>Login: { user.login }</Text>
-            <Text>Senha: { user.password }</Text>
-            <Text>Cidade: { user.city }</Text>
+            <Text onPress={ goToUserDetails }>Id: { user.id }</Text>
+            <Text onPress={ goToUserDetails }>Nome: { user.name }</Text>
+            <Text onPress={ goToUserDetails }>Email: { user.email }</Text>
+            <Text onPress={ goToUserDetails }>Login: { user.login }</Text>
+            <Text onPress={ goToUserDetails }>Senha: { user.password }</Text>
+            <Text onPress={ goToUserDetails }>Cidade: { user.city }</Text>
             <Button title="Editar" onPress={ () => navigation.navigate("EditUser", { id: user.id })} />
             <Button title="Excluir" />
         </View>
