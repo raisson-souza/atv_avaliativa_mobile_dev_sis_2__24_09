@@ -15,7 +15,7 @@ type HomeScreenProps = {
     route: HomeScreenRouteProp
 }
 
-type HomeNavigationProp = StackNavigationProp<StackNavigationRoutes, "Home">
+export type HomeNavigationProp = StackNavigationProp<StackNavigationRoutes, "Home">
 
 export const Home: React.FC<HomeScreenProps> = ({ route }) => {
     const [ users, setUsers ] = useState<UserOutput[]>([])
