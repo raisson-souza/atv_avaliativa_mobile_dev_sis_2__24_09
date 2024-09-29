@@ -85,7 +85,9 @@ export default abstract class Service {
             )
                 .then(async (response) => {
                     console.log('response UpdateUser', response)
-                    return response.json()
+                    return response.json().then(response => {
+                        return response["message"]
+                    })
                 })
         }
         catch (ex) {
@@ -105,7 +107,9 @@ export default abstract class Service {
             )
                 .then(async (response) => {
                     console.log('response DeleteUser', response)
-                    return response.json()
+                    return response.json().then(response => {
+                        return response["message"]
+                    })
                 })
         }
         catch (ex) {
