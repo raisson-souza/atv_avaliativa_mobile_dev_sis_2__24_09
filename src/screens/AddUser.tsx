@@ -4,7 +4,7 @@ import { StackNavigationProp } from "@react-navigation/stack"
 import { StackNavigationRoutes } from "../../App"
 import { useNavigation } from "@react-navigation/native"
 import { UserInput } from "../types/user"
-import { View, Text, Button, TextInput, StyleSheet } from "react-native"
+import { View, Button, TextInput, StyleSheet } from "react-native"
 import React, { useState } from "react"
 import ScreenBase from "../components/ScreenBase"
 import Service from "../services/Service"
@@ -33,7 +33,7 @@ export const AddUser: React.FC<AddUserScreenProps> = ({ route }) => {
             user.email === "" ||
             user.login === "" ||
             user.password === "" ||
-            user.city === ""
+            user.city === "Santa Maria"
         )
             return window.alert("Complete todas as informações do usuário.")
         const newUser = await Service.AddUser(user)
@@ -44,7 +44,7 @@ export const AddUser: React.FC<AddUserScreenProps> = ({ route }) => {
     }
 
     return (
-        <ScreenBase>
+        <ScreenBase marginTop={ 0 }>
             <View style={ styles.container }>
                 <TextInput
                     id="name"
@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
         height: 50,
     },
     container: {
+        flex: 1,
         gap: 15,
     }
 });

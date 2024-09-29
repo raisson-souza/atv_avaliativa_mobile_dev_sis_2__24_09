@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react"
-import { RouteProp } from "@react-navigation/native"
-import { StackNavigationRoutes } from "../../App"
-import { View, Text, Button, StyleSheet, TextInput } from "react-native"
-import { useNavigation } from "@react-navigation/native"
-import { StackNavigationProp } from "@react-navigation/stack"
-import ScreenBase from "../components/ScreenBase"
-import { UserInput, UserOutput } from "../types/user"
-import Service from "../services/Service"
 import { Picker } from "@react-native-picker/picker"
+import { RouteProp } from "@react-navigation/native"
+import { StackNavigationProp } from "@react-navigation/stack"
+import { StackNavigationRoutes } from "../../App"
+import { useNavigation } from "@react-navigation/native"
+import { UserOutput } from "../types/user"
+import { View, Text, Button, StyleSheet, TextInput } from "react-native"
+import React, { useEffect, useState } from "react"
+import ScreenBase from "../components/ScreenBase"
+import Service from "../services/Service"
 
 type EditUserScreenRouteProp = RouteProp<StackNavigationRoutes, "EditUser">
 
@@ -63,7 +63,7 @@ export const EditUser: React.FC<EditUserScreenProps> = ({ route }) => {
     }
 
     return (
-        <ScreenBase>
+        <ScreenBase marginTop={ 0 }>
             <View style={ styles.container }>
                 <TextInput
                     id="name"
@@ -120,6 +120,7 @@ const styles = StyleSheet.create({
         height: 50,
     },
     container: {
+        flex: 1,
         gap: 15,
     }
 });
