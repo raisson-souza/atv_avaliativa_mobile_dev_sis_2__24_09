@@ -48,7 +48,6 @@ export const DetailsUser: React.FC<DetailsUserScreenProps> = ({ route }) => {
                 <Text>Senha: { user.password }</Text>
                 <Text>Cidade: { user.city }</Text>
                 <Button title="Editar" onPress={ () => navigation.navigate("EditUser", { id: user.id })} />
-                <Button title="Excluir" />
             </View>
         </ScreenBase>
     )
