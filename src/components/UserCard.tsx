@@ -18,14 +18,18 @@ export default function UserCard({ user, setOpenModal, setUserInfoToDelete, open
         <View
             style={ styles.container }
         >
-            <Text onPress={ goToUserDetails }>Id: { user.id }</Text>
-            <Text onPress={ goToUserDetails }>Nome: { user.name }</Text>
-            <Text onPress={ goToUserDetails }>Email: { user.email }</Text>
-            <Text onPress={ goToUserDetails }>Login: { user.login }</Text>
-            <Text onPress={ goToUserDetails }>Senha: { user.password }</Text>
-            <Text onPress={ goToUserDetails }>Cidade: { user.city }</Text>
-            <Button title="Editar" onPress={ () => navigation.navigate("EditUser", { id: user.id })} disabled={ !openModal } />
-            <Button title="Excluir" onPress={ () => { setOpenModal(true); setUserInfoToDelete({ id: user.id, name: user.name }) } } disabled={ !openModal } />
+            <View style={ styles.userInfo }>
+                {/* <Text onPress={ goToUserDetails }>Id: { user.id }</Text> */}
+                <Text onPress={ goToUserDetails }>Nome: { user.name }</Text>
+                <Text onPress={ goToUserDetails }>Email: { user.email }</Text>
+                <Text onPress={ goToUserDetails }>Login: { user.login }</Text>
+                <Text onPress={ goToUserDetails }>Senha: { user.password }</Text>
+                <Text onPress={ goToUserDetails }>Cidade: { user.city }</Text>
+            </View>
+            <View>
+                <Button title="Editar" onPress={ () => navigation.navigate("EditUser", { id: user.id })} disabled={ !openModal } />
+                <Button title="Excluir" onPress={ () => { setOpenModal(true); setUserInfoToDelete({ id: user.id, name: user.name }) } } disabled={ !openModal } />
+            </View>
         </View>
     )
 }
@@ -34,8 +38,9 @@ const styles = StyleSheet.create({
     container: {
         borderColor: "black",
         borderWidth: 1,
+        flexDirection: "row",
+        justifyContent: "space-between"
     },
-    input: {
-        width: 50,
-    }
+    userInfo: {
+    },
 })

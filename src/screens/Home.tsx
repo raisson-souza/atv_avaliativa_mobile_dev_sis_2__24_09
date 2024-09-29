@@ -1,10 +1,10 @@
-import { Button, Modal, ScrollView, StyleSheet, Text, View } from "react-native"
+import { Button, Modal, RefreshControl, ScrollView, StyleSheet, Text, View } from "react-native"
 import { RouteProp } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
 import { StackNavigationRoutes } from "../../App"
 import { useNavigation } from "@react-navigation/native"
 import { UserOutput } from "../types/user"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import ScreenBase from "../components/ScreenBase"
 import Service from "../services/Service"
 import UserCard from "../components/UserCard"
@@ -26,18 +26,22 @@ export const Home: React.FC<HomeScreenProps> = ({ route }) => {
     const [ users, setUsers ] = useState<UserOutput[]>([])
     const [ openModal, setOpenModal ] = useState<boolean>(false)
     const [ userInfoToDelete, setUserInfoToDelete ] = useState<UserInfoToDelete | null>(null)
+    const [ loading, setLoading ] = useState<boolean>(false)
 
     const navigation = useNavigation<HomeNavigationProp>()
 
+    const fetchUsers = async () => {
+        if (!loading) setLoading(true)
+        await Service.ListUsers()
+            .then(result => {
+                setUsers(result)
+            })
+        setLoading(false)
+    }
+
     useEffect(() => {
-        const fetchUsers = async () => {
-            await Service.ListUsers()
-                .then(result => {
-                    setUsers(result)
-                })
-        }
         fetchUsers()
-    }, [openModal, route])
+    }, [openModal])
 
     const deleteUser = async (id: number) => {
         const message = await Service.DeleteUser(id)
@@ -66,7 +70,15 @@ export const Home: React.FC<HomeScreenProps> = ({ route }) => {
                     }
                 </View>
             </Modal>
-            <ScrollView style={ styles.users }>
+            <ScrollView
+                style={ styles.users }
+                refreshControl={
+                    <RefreshControl
+                        refreshing={ loading }
+                        onRefresh={ fetchUsers }
+                    />
+                }
+            >
                 {
                     users.length > 0
                         ? (
@@ -92,8 +104,9 @@ export const Home: React.FC<HomeScreenProps> = ({ route }) => {
 
 const styles = StyleSheet.create({
     users: {
-        paddingTop: 50,
+        // paddingTop: 50,
         alignSelf: "stretch",
+        // width: 100
     },
     modal: {
         flex: 0,
