@@ -23,7 +23,7 @@ export const AddUser: React.FC<AddUserScreenProps> = ({ route }) => {
         email: "",
         login: "",
         password: "",
-        city: "",
+        city: "Santa Maria",
     })
     const navigation = useNavigation<AddUserNavigationProp>()
 
@@ -33,7 +33,7 @@ export const AddUser: React.FC<AddUserScreenProps> = ({ route }) => {
             user.email === "" ||
             user.login === "" ||
             user.password === "" ||
-            user.city === "Santa Maria"
+            user.city === ""
         )
             return window.alert("Complete todas as informações do usuário.")
         const newUser = await Service.AddUser(user)
@@ -76,7 +76,7 @@ export const AddUser: React.FC<AddUserScreenProps> = ({ route }) => {
                     selectedValue={ user.city }
                     style={ styles.picker }
                 >
-                    <Picker.Item label="Santa Maria" value="Santa Maria" style={ styles.picker } />
+                    <Picker.Item label="Santa Maria" value="Santa Maria" />
                     <Picker.Item label="Recanto Maestro" value="Recanto Maestro" />
                     <Picker.Item label="Restinga" value="Restinga" />
                     <Picker.Item label="Faxinal" value="Faxinal" />
