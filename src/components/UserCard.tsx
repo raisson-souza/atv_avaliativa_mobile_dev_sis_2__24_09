@@ -6,11 +6,11 @@ import { View, Text, StyleSheet, Button } from "react-native"
 type UserCardProps = {
     user: UserOutput
     setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
-    openModal: boolean
+    enableButtons: boolean
     setUserInfoToDelete: React.Dispatch<React.SetStateAction<UserInfoToDelete | null>>
 }
 
-export default function UserCard({ user, setOpenModal, setUserInfoToDelete, openModal }: UserCardProps) {
+export default function UserCard({ user, setOpenModal, setUserInfoToDelete, enableButtons }: UserCardProps) {
     const navigation = useNavigation<HomeNavigationProp>()
     const goToUserDetails = () => navigation.navigate("DetailsUser", { id: user.id })
 
@@ -27,8 +27,8 @@ export default function UserCard({ user, setOpenModal, setUserInfoToDelete, open
                 <Text onPress={ goToUserDetails }>Cidade: { user.city }</Text>
             </View>
             <View>
-                <Button title="Editar" onPress={ () => navigation.navigate("EditUser", { id: user.id })} disabled={ !openModal } />
-                <Button title="Excluir" onPress={ () => { setOpenModal(true); setUserInfoToDelete({ id: user.id, name: user.name }) } } disabled={ !openModal } />
+                <Button title="Editar" onPress={ () => navigation.navigate("EditUser", { id: user.id })} disabled={ !enableButtons } />
+                <Button title="Excluir" onPress={ () => { setOpenModal(true); setUserInfoToDelete({ id: user.id, name: user.name }) } } disabled={ !enableButtons } />
             </View>
         </View>
     )

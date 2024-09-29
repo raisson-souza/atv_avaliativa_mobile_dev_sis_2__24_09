@@ -87,7 +87,7 @@ export const Home: React.FC<HomeScreenProps> = ({ route }) => {
                                     user={ user }
                                     key={ i }
                                     setOpenModal={ setOpenModal }
-                                    openModal
+                                    enableButtons={ !openModal }
                                     setUserInfoToDelete={ setUserInfoToDelete }
                                 />
                             ))
@@ -104,14 +104,11 @@ export const Home: React.FC<HomeScreenProps> = ({ route }) => {
 
 const styles = StyleSheet.create({
     users: {
-        // paddingTop: 50,
         alignSelf: "stretch",
-        // width: 100
     },
     modal: {
         flex: 0,
         justifyContent: "center",
-        // alignItems: "center",
         alignContent: "center",
         alignSelf: "center",
         verticalAlign: "bottom",

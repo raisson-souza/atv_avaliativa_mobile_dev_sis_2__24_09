@@ -23,7 +23,7 @@ export default abstract class Service {
                 }
             )
                 .then(async (response) => {
-                    console.log('response AddUser', response)
+                    console.log("AddUser")
                     return await response.json()
                 })
         }
@@ -43,7 +43,7 @@ export default abstract class Service {
                 }
             )
                 .then(async (response) => {
-                    console.log('response ListUsers', response)
+                    console.log("ListUsers")
                     return await response.json() as UserOutput[]
                 })
         }
@@ -63,7 +63,7 @@ export default abstract class Service {
                 }
             )
                 .then(async (response) => {
-                    console.log('response GetUser', response)
+                    console.log("GetUser")
                     return response.json()
                 })
         }
@@ -84,7 +84,7 @@ export default abstract class Service {
                 }
             )
                 .then(async (response) => {
-                    console.log('response UpdateUser', response)
+                    console.log("UpdateUser")
                     return response.json().then(response => {
                         return response["message"]
                     })
@@ -106,7 +106,7 @@ export default abstract class Service {
                 }
             )
                 .then(async (response) => {
-                    console.log('response DeleteUser', response)
+                    console.log("DeleteUser")
                     return response.json().then(response => {
                         return response["message"]
                     })
