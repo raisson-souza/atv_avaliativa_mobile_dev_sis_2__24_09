@@ -22,9 +22,9 @@ export default function UserCard({ user, setOpenModal, setUserInfoToDelete, enab
                 {/* <Text onPress={ goToUserDetails }>Id: { user.id }</Text> */}
                 <Text onPress={ goToUserDetails }>Nome: { user.name }</Text>
                 <Text onPress={ goToUserDetails }>Email: { user.email }</Text>
-                <Text onPress={ goToUserDetails }>Login: { user.login }</Text>
-                <Text onPress={ goToUserDetails }>Senha: { user.password }</Text>
-                <Text onPress={ goToUserDetails }>Cidade: { user.city }</Text>
+                {/* <Text onPress={ goToUserDetails }>Login: { user.login }</Text> */}
+                {/* <Text onPress={ goToUserDetails }>Senha: { user.password }</Text> */}
+                {/* <Text onPress={ goToUserDetails }>Cidade: { user.city }</Text> */}
             </View>
             <View>
                 <Button title="Editar" onPress={ () => navigation.navigate("EditUser", { id: user.id })} disabled={ !enableButtons } />
