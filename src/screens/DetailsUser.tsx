@@ -1,12 +1,12 @@
 import { RouteProp } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
-import { StackNavigationRoutes } from "../../App"
 import { Text, Button, View } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { UserOutput } from "../types/user"
 import React, { useEffect, useState } from "react"
 import ScreenBase from "../components/ScreenBase"
 import Service from "../services/Service"
+import { StackNavigationRoutes } from "../routes/auth.routes"
 
 type DetailsUserScreenRouteProp = RouteProp<StackNavigationRoutes, "DetailsUser">
 

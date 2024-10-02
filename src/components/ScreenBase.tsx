@@ -8,11 +8,11 @@ type ScreenBaseProps = {
     marginTop?: number
 }
 
-export default function ScreenBase({ children, marginTop = 40 }: ScreenBaseProps) {
+export default function ScreenBase({ children, marginTop = 0 }: ScreenBaseProps) {
     return (
         <View style={ styles.container }>
             <CustomHeader marginTop={ marginTop } />
-            { children }
+                { children }
             <CustomFooter />
         </View>
     )

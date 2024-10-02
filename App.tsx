@@ -1,45 +1,17 @@
-import { AddUser } from "./src/screens/AddUser"
-import { createStackNavigator } from "@react-navigation/stack"
-import { DetailsUser } from "./src/screens/DetailsUser"
-import { EditUser } from "./src/screens/EditUser"
-import { Home } from "./src/screens/Home"
+import "react-native-gesture-handler"
+import { AuthProvider } from "./src/context/auth"
 import { NavigationContainer } from "@react-navigation/native"
+import { StatusBar } from "react-native"
 import React from "react"
-
-export type StackNavigationRoutes = {
-  Home: undefined
-  AddUser: undefined
-  EditUser: { id: number }
-  DetailsUser: { id: number }
-}
-
-const Stack = createStackNavigator<StackNavigationRoutes>()
+import Routes from "./src/routes"
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="AddUser"
-          component={AddUser}
-          options={{ title: "Criar usuário" }}
-        />
-        <Stack.Screen
-          name="EditUser"
-          component={EditUser}
-          options={{ title: "Editar usuário" }}
-        />
-        <Stack.Screen
-          name="DetailsUser"
-          component={DetailsUser}
-          options={{ title: "Usuário" }}
-        />
-      </Stack.Navigator>
+      <AuthProvider>
+        <StatusBar backgroundColor="#F0F4FF" barStyle="dark-content" />
+        <Routes />
+      </AuthProvider>
     </NavigationContainer>
   )
 }

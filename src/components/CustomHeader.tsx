@@ -4,7 +4,7 @@ type CustomHeaderProps = {
     marginTop: number
 }
 
-export default function CustomHeader({ marginTop = 40 } : CustomHeaderProps) {
+export default function CustomHeader({ marginTop = 0 } : CustomHeaderProps) {
     return (
         <View style={ {...styles.container, marginTop: marginTop } }>
             <Text style={ styles.text }>Atividade Avaliativa - DEV SIS 2</Text>
